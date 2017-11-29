@@ -27,6 +27,7 @@ import ddf.catalog.operation.impl.SourceResponseImpl;
 import ddf.catalog.plugin.PluginExecutionException;
 import ddf.catalog.plugin.PostFederatedQueryPlugin;
 import ddf.catalog.plugin.StopProcessingException;
+import ddf.catalog.util.impl.BasicAttributeComparator;
 import ddf.catalog.util.impl.CollectionResultComparator;
 import ddf.catalog.util.impl.DistanceResultComparator;
 import ddf.catalog.util.impl.RelevanceResultComparator;
@@ -128,10 +129,10 @@ class SortedQueryMonitor implements Runnable {
           comparator = new DistanceResultComparator(sortOrder);
         } else if (Result.RELEVANCE.equals(sortType)) {
           comparator = new RelevanceResultComparator(sortOrder);
+        } else {
+          comparator = new BasicAttributeComparator(sortingProp.getPropertyName(), sortOrder);
         }
-        if (comparator != null) {
-          resultComparator.addComparator(comparator);
-        }
+        resultComparator.addComparator(comparator);
       }
     } else {
       Comparator<Result> coreComparator = CachingFederationStrategy.DEFAULT_COMPARATOR;
