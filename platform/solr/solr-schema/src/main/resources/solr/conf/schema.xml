@@ -34,11 +34,11 @@
     <uniqueKey>id_txt</uniqueKey>
 
     <!-- Fields -->
-    <field name="_version_" type="plong" indexed="false" stored="false" docValues="true"/>
+    <field name="_version_" type="plong" indexed="false" stored="false"/>
     <field name="_root_" type="string" indexed="true" stored="false" docValues="false" />
     <field name="_text_" type="text" indexed="true" stored="false" multiValued="true"/>
 
-    <field name="id_txt" type="string" indexed="true" stored="true" required="true" multiValued="false" docValues="true"/>
+    <field name="id_txt" type="string" required="true" indexed="true" stored="true" multiValued="false"/>
     <field name="id_txt_tokenized" type="text" indexed="true" stored="false" required="false"/>
     <field name="id_txt_tokenized_has_case" type="text_case" indexed="true" stored="false" required="false"/>
 
@@ -57,8 +57,8 @@
     <dynamicField name="*_geo_index" type="srptgeom" indexed="true" stored="false" multiValued="true"/>
     <dynamicField name="*_geo_sort" type="location" indexed="false" stored="false" multiValued="true" docValues="true"/>
 
-    <dynamicField name="*_xml" type="string" indexed="false" stored="true" multiValued="true" docValues="false"/>
-    <dynamicField name="*_txt" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <dynamicField name="*_xml" type="string" indexed="false" stored="true" multiValued="true"/>
+    <dynamicField name="*_txt" type="string" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="*_txt_tokenized" type="text" indexed="true" stored="false" multiValued="true"/>
     <dynamicField name="*_txt_tokenized_has_case" type="text_case" indexed="true" stored="false" multiValued="true"/>
 
@@ -70,14 +70,14 @@
     <copyField source="*_geo" dest="*_geo_index"/>
 
     <!-- Field Types -->
-    <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true" />
     <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
 
-    <fieldType name="pint" class="solr.IntPointField"/>
-    <fieldType name="pfloat" class="solr.FloatPointField"/>
-    <fieldType name="plong" class="solr.LongPointField"/>
-    <fieldType name="pdouble" class="solr.DoublePointField"/>
-    <fieldType name="pdate" class="solr.DatePointField"/>
+    <fieldType name="pint" class="solr.IntPointField" docValues="true"/>
+    <fieldType name="pfloat" class="solr.FloatPointField" docValues="true"/>
+    <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
+    <fieldType name="pdouble" class="solr.DoublePointField" docValues="true"/>
+    <fieldType name="pdate" class="solr.DatePointField" indexed="true" stored="true" />
 
     <fieldType name="binary" class="solr.BinaryField"/>
 
